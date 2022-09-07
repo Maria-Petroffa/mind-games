@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import username from '../src/cli.js'
+import startGame from '../src/even.js'
 
 console.log('Welcome to the Brain Games!')
-username()
+startGame()

@@ -6,3 +6,7 @@ publish:
 	npm publish --dry-run
 lint:
 	npx eslint
+
+buld:
+	npx eslint
+	npm publish --dry-run
