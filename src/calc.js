@@ -5,10 +5,10 @@ const startQuestionMessage = 'What is the result of the expression?';
 const generateOperation = () => {
   const rundomNumber = generateNumberRandom(20);
   if (rundomNumber % 2 === 0) {
-    return "+";
+    return '+';
   }
   if (rundomNumber % 3 === 0) {
-    return "*";
+    return '*';
   }
   return '-';
 };
@@ -30,7 +30,7 @@ const createQuestion = ({ number1, number2, operation }) => {
   } else {
     result = number1 - number2;
   }
-  const correctAnswer = result + "";
+  const correctAnswer = String(result);
   return { questionData, correctAnswer };
 };
 

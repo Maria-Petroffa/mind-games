@@ -37,7 +37,6 @@ export const gameBody = (startQuestionMessage, dataForQuestion, createQuestion) 
   const name = startMessage(startQuestionMessage); // приветствие
 
   for (let i = 1; i <= maxCorrectAnswer; i += 1) {
-
     // генерируется вопрос + верный ответ
     const { questionData, correctAnswer } = createQuestionData(dataForQuestion(), createQuestion);
 
@@ -54,4 +53,5 @@ export const gameBody = (startQuestionMessage, dataForQuestion, createQuestion) 
       return winMessage(name);
     }
   }
+  return;
 };
