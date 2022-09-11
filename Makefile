@@ -6,7 +6,6 @@ publish:
 	npm publish --dry-run
 lint:
 	npx eslint
-
 buld:
 	npx eslint
 	npm publish --dry-run
@@ -17,4 +16,6 @@ gcd:
 even:
 	node bin/brain-even.js
 prog:
-	node bin/brain-progression
+	node bin/brain-progression.js
+prime:
+	node bin/brain-prime.js
