@@ -18,7 +18,7 @@ const createQuestion = (list) => {
     const index = generateNumberRandom(9)
     const questionData = list;
     const answer = questionData.splice(index, 1, '..')
-    return { questionData, correctAnswer: `${answer[0]}` }
+    return { questionData: questionData.join(' '), correctAnswer: `${answer[0]}` }
 }
 
 export default () => gameBody(startQuestionMessage, generateListNumber, createQuestion)
