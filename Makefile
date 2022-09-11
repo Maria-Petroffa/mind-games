@@ -10,3 +10,7 @@ lint:
 buld:
 	npx eslint
 	npm publish --dry-run
+calc:
+	node bin/brain-calc.js
+gcd:
+	node bin/brain-gcd.js
