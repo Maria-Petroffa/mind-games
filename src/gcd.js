@@ -8,6 +8,12 @@ const dataForQuestion = () => ({
 });
 
 const getGcd = (number1, number2) => {
+    if (number1 === number2) {
+        return number1 + ''
+    }
+    if (number1 === 0 || number2 === 0) {
+        return 0 + ''
+    }
     let furstNum = number1
     let secondNum = number2
     for (; furstNum != 0 || secondNum != 0;) {
@@ -24,18 +30,8 @@ const getGcd = (number1, number2) => {
 }
 
 const createQuestion = ({ number1, number2 }) => {
-    if (number1 === number2) {
-        return number1
-    }
-    if (number1 === 0 || number2 === 0) {
-        return 0
-    }
-    const furstNum = Math.max(number1, number2)
-    const secondNum = Math.min(number1, number2)
-
-    const correctAnswer = getGcd(furstNum, secondNum)
+    const correctAnswer = getGcd(number1, number2)
     const questionData = `${number1} ${number2}`
-
     return { questionData, correctAnswer }
 }
 
