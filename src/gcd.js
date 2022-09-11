@@ -12,7 +12,7 @@ const getGcd = (number1, number2) => {
         return number1 + ''
     }
     if (number1 === 0 || number2 === 0) {
-        return 0 + ''
+        return Math.max(number1, number2)
     }
     let furstNum = number1
     let secondNum = number2
