@@ -18,6 +18,9 @@ export default () => {
             if (number1 === number2) {
                 return number1
             }
+            if (number1 === 0 || number2 === 0) {
+                return 0
+            }
             let furstNum = Math.max(number1, number2)
             let secondNum = Math.min(number1, number2)
 

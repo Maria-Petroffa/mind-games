@@ -14,3 +14,7 @@ calc:
 	node bin/brain-calc.js
 gcd:
 	node bin/brain-gcd.js
+even:
+	node bin/brain-even.js
+prog:
+	node bin/brain-progression
