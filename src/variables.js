@@ -53,5 +53,5 @@ export const gameBody = (startQuestionMessage, dataForQuestion, createQuestion) 
       return winMessage(name);
     }
   }
-  return;
+  return '';
 };

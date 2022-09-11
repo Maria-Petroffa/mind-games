@@ -20,7 +20,7 @@ const getGcd = (number1, number2) => {
     if (furstNum > secondNum) {
       furstNum %= secondNum;
     } else {
-      secondNum %=  furstNum;
+      secondNum %= furstNum;
     }
     if (furstNum === 0 || secondNum === 0) {
       break;
