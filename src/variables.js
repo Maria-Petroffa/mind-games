@@ -34,9 +34,7 @@ export const createQuestionData = (data, func) => {
 // тело игры
 
 export const gameBody = (startQuestionMessage, dataForQuestion, createQuestion) => {
-
-    // приветствие
-    const name = startMessage(startQuestionMessage)
+    const name = startMessage(startQuestionMessage) // приветствие
 
     for (let i = 1; i <= maxCorrectAnswer; i += 1) {
 
