@@ -1,59 +1,36 @@
-import readlineSync from 'readline-sync';
+import { gameBody, generateNumberRandom } from './variables.js';
 
-const generateNumberRandom = () => Math.floor(Math.random() * 20)
+const startQuestionMessage = 'Find the greatest common divisor of given numbers.';
 
-const maxCorrectAnsver = 3;
+const dataForQuestion = () => ({
+    number1: generateNumberRandom(20),
+    number2: generateNumberRandom(20)
+});
 
-export default () => {
+const createQuestion = ({ number1, number2 }) => {
+    if (number1 === number2) {
+        return number1
+    }
+    if (number1 === 0 || number2 === 0) {
+        return 0
+    }
+    let furstNum = Math.max(number1, number2)
+    let secondNum = Math.min(number1, number2)
 
-    const name = readlineSync.question('May I have your name? ');
-    console.log(`Hello, ${name}!`)
-    console.log('Find the greatest common divisor of given numbers.')
-
-    for (let i = 1; i <= maxCorrectAnsver; i += 1) {
-        const currentNumber1 = generateNumberRandom()
-        const currentNumber2 = generateNumberRandom()
-
-        const correctAnswer = (number1, number2) => {
-            if (number1 === number2) {
-                return number1
-            }
-            if (number1 === 0 || number2 === 0) {
-                return 0
-            }
-            let furstNum = Math.max(number1, number2)
-            let secondNum = Math.min(number1, number2)
-
-            for (; furstNum != 0 || secondNum != 0;) {
-                if (furstNum > secondNum) {
-                    furstNum = furstNum % secondNum
-                } else {
-                    secondNum = secondNum % furstNum
-                }
-
-                if (furstNum === 0 || secondNum == 0) {
-                    break
-                }
-            }
-
-            return furstNum + secondNum + ''
-        }
-
-        console.log(`Question: ${currentNumber1} ${currentNumber2}`)
-        const answer = readlineSync.question('Your answer: ')
-        const tryAnswer = correctAnswer(currentNumber1, currentNumber2)
-
-
-        if (answer === tryAnswer) {
-            console.log('Correct!')
+    for (; furstNum != 0 || secondNum != 0;) {
+        if (furstNum > secondNum) {
+            furstNum = furstNum % secondNum
         } else {
-            console.log(`"${answer}" is wrong answer ;(. Correct answer was "${tryAnswer}".`)
-            console.log(`Let's try again, ${name}!`)
-            break
+            secondNum = secondNum % furstNum
         }
-        if (i === 3) {
-            console.log(`Congratulations, ${name}!`)
+        if (furstNum === 0 || secondNum == 0) {
             break
         }
     }
+    const correctAnswer = furstNum + secondNum + ''
+    const questionData = `${number1} ${number2}`
+
+    return { questionData, correctAnswer }
 }
+
+export default () => gameBody(startQuestionMessage, dataForQuestion, createQuestion);

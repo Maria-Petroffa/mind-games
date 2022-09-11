@@ -1,8 +1,9 @@
-import readlineSync from 'readline-sync';
+import { gameBody, createQuestionData, generateQuestionMessage, rightAnswerMessage, winMessage, generateNumberRandom, maxCorrectAnswer, startMessage, wrongAnswerMessage } from './variables.js';
 
-const generateNumberRandom = () => Math.floor(Math.random() * 20)
+const startQuestionMessage = 'What is the result of the expression?'
+
 const generateOperation = () => {
-    const rundomNumber = generateNumberRandom()
+    const rundomNumber = generateNumberRandom(20)
     if (rundomNumber % 2 === 0) {
         return "+";
     }
@@ -12,45 +13,25 @@ const generateOperation = () => {
     return '-';
 }
 
-const maxCorrectAnsver = 3;
-
-export default () => {
-
-    const name = readlineSync.question('May I have your name? ');
-    console.log(`Hello, ${name}!`)
-    console.log('What is the result of the expression?')
-
-    for (let i = 1; i <= maxCorrectAnsver; i += 1) {
-        const currentNumber1 = generateNumberRandom()
-        const currentNumber2 = generateNumberRandom()
-        const currentOperation = generateOperation()
-
-        const correctAnswer = (number1, number2) => {
-            let result = 0
-            if (currentOperation === '+') {
-                result = number1 + number2;
-            } else if (currentOperation === '*') {
-                result = number1 * number2
-            } else {
-                result = number1 - number2
-            }
-            return result + ""
-        }
-
-        console.log(`Question: ${currentNumber1} ${currentOperation} ${currentNumber2}`)
-        const answer = readlineSync.question('Your answer: ')
-
-
-        if (answer === correctAnswer(currentNumber1, currentNumber2)) {
-            console.log('Correct!')
-        } else {
-            console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer(currentNumber1, currentNumber2)}".`)
-            console.log(`Let's try again, ${name}!`)
-            break
-        }
-        if (i === 3) {
-            console.log(`Congratulations, ${name}!`)
-            break
-        }
-    }
+const dataForQuestion = () => {
+    const number1 = generateNumberRandom(20)
+    const number2 = generateNumberRandom(20)
+    const operation = generateOperation()
+    return { number1, number2, operation }
 }
+
+const createQuestion = ({ number1, number2, operation }) => {
+    const questionData = `${number1} ${operation} ${number2}`
+    let result = 0
+    if (operation === '+') {
+        result = number1 + number2;
+    } else if (operation === '*') {
+        result = number1 * number2
+    } else {
+        result = number1 - number2
+    }
+    const correctAnswer = result + ""
+    return { questionData, correctAnswer }
+}
+
+export default () => gameBody(startQuestionMessage, dataForQuestion, createQuestion)

@@ -1,6 +1,7 @@
-import readlineSync from 'readline-sync';
+import { gameBody, generateNumberRandom } from './variables.js';
 
-const generateNumberRandom = (maxNumber = 10) => Math.floor(Math.random() * maxNumber)
+const startQuestionMessage = 'What number is missing in the progression?'
+
 const generateListNumber = (length = 10, step = 2) => {
     const lengthList = length >= 5 ? length : 10;
     const stepNumber = step >= 2 ? step : 2;
@@ -13,39 +14,11 @@ const generateListNumber = (length = 10, step = 2) => {
     return result
 }
 
-const generateQuestion = (list) => {
+const createQuestion = (list) => {
     const index = generateNumberRandom(9)
-    const question = list;
-    const answer = question.splice(index, 1, '..')
-    return { question, correctAnswer: `${answer[0]}` }
+    const questionData = list;
+    const answer = questionData.splice(index, 1, '..')
+    return { questionData, correctAnswer: `${answer[0]}` }
 }
 
-const maxCorrectAnsver = 3;
-
-export default () => {
-
-    const name = readlineSync.question('May I have your name? ');
-    console.log(`Hello, ${name}!`)
-    console.log('What number is missing in the progression?')
-
-    for (let i = 1; i <= maxCorrectAnsver; i += 1) {
-        const listNumber = generateListNumber()
-        const questionObject = generateQuestion(listNumber)
-        const { question, correctAnswer } = questionObject
-
-        console.log(`Question: ${question}`)
-        const answer = readlineSync.question('Your answer: ')
-        
-        if (answer === correctAnswer) {
-            console.log('Correct!')
-        } else {
-            console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`)
-            console.log(`Let's try again, ${name}!`)
-            break
-        }
-        if (i === 3) {
-            console.log(`Congratulations, ${name}!`)
-            break
-        }
-    }
-}
+export default () => gameBody(startQuestionMessage, generateListNumber, createQuestion)
